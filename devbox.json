@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
+  "packages": [
+    "python@3.12",
+    "postgresql@17",
+    "nodejs@20",
+    "git@latest",
+    "gcc@latest",
+    "gnumake@latest",
+    "pkg-config@latest",
+    "libxml2@latest",
+    "libxslt@latest",
+    "openssl@latest",
+    "zlib@latest",
+    "libjpeg@latest",
+    "libffi@latest",
+    "freetype@latest",
+    "lcms2@latest",
+    "openldap@latest",
+    "cyrus_sasl@latest"
+  ],
+  "env": {
+  },
+  "shell": {
+    "init_hook": [
+      "if [ ! -d .venv ]; then python3 -m venv .venv; fi",
+      ". .venv/bin/activate",
+      "export PYTHONPATH=$PWD/odoo:$PYTHONPATH",
+      "bash scripts/welcome.sh"
+    ],
+    "scripts": {
+      "setup": "bash devbox-setup.sh",
+      "update-deps": ". .venv/bin/activate && sed 's/psycopg2==/psycopg2-binary==/' ./odoo/requirements.txt | pip install -r /dev/stdin",
+      "start-odoo": ". .venv/bin/activate && python ./odoo/odoo-bin -c odoo.conf --dev xml,qweb,werkzeug",
+      "test-odoo": ". .venv/bin/activate && python ./odoo/odoo-bin -c odoo.conf -d test --test-enable --stop-after-init"
+    }
+  }
+}

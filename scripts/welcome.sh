@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Welcome banner shown on devbox shell entry.
+
+bold=$'\033[1;32m'
+cyan=$'\033[1;36m'
+reset=$'\033[0m'
+
+cat <<EOF
+
+${cyan}Odoo 19 Devbox${reset}
+  ${bold}devbox run setup${reset}         First-time setup (venv, pip deps, PostgreSQL)
+  ${bold}devbox services start${reset}    Start PostgreSQL in the background
+  ${bold}devbox services stop${reset}     Stop PostgreSQL
+  ${bold}devbox run start-odoo${reset}    Start Odoo (port ${ODOO_HTTP_PORT:-8069})
+  ${bold}devbox run test-odoo${reset}     Run Odoo tests
+  ${bold}devbox run update-deps${reset}   Reinstall Odoo Python dependencies
+See README.md for details.
+
+EOF
