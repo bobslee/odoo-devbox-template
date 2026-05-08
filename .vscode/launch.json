@@ -14,7 +14,8 @@
         "cwd": "${workspaceFolder}",
         "env": {
           "PYTHONPATH": "${workspaceFolder}/odoo",
-          "ODOO_PY_COLORS": "1"
+          "ODOO_PY_COLORS": "1",
+          "PATH": "${workspaceFolder}/.devbox/nix/profile/default/bin:${env:PATH}"
         },
         "python": "${workspaceFolder}/.venv/bin/python",
         "justMyCode": false,

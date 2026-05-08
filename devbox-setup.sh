@@ -77,6 +77,10 @@ if [ ! -d "$PGDATA" ] || [ -z "$(ls -A "$PGDATA" 2>/dev/null)" ]; then
   initdb -D "$PGDATA" -E UTF8 --no-locale -A trust
 fi
 
+# Stable short alias for the socket dir, so odoo.conf can use a portable path.
+# The alias name matches the devbox project root basename, so multiple checkouts don't collide.
+ln -sfn "$PGSOCKDIR" "/tmp/$(basename "$WORKSPACE")"
+
 # Start PostgreSQL only on Unix socket (no TCP)
 pg_ctl -D "$PGDATA" -l "$PGDATA/logfile" \
   -o "-c unix_socket_directories='$PGSOCKDIR' -c listen_addresses=''" start || true

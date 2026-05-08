@@ -104,6 +104,16 @@ Whereas `enterprise` is a symlink.
 Example:\
 `50019`
 
+#### db_host
+
+PostgreSQL runs on a Unix socket only (no TCP). `db_host` must be an absolute path to the socket directory, so we expose a stable short alias under `/tmp` whose name matches the devbox project root basename.
+
+For this checkout (`devbox-odoo-19`):
+
+`db_host = /tmp/devbox-odoo-19`
+
+The alias is (re)created automatically by `devbox run setup` and on every `devbox services up` (see [scripts/write-process-compose-pg.sh](scripts/write-process-compose-pg.sh)). If you rename or clone the project directory under a different name, update `db_host` in `odoo.conf` to match the new basename.
+
 ## PostgreSQL
 
 `psql -h db -U odoo postgres`
