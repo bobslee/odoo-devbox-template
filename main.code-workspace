@@ -1,12 +1,31 @@
 {
 	"folders": [
 		{
-			"name": "devbox",
 			"path": "."
 		},
 		{
-			"name": "addons",
 			"path": "addons"
 		}
-	]
+	],
+	"settings": {
+		"search.useParentIgnoreFiles": false,
+		"search.useIgnoreFiles": false,
+		"search.exclude": {
+			"addons": true,
+			"**/__pycache__": true,
+			"**/*.pyc": true,
+			"**/node_modules": true,
+			"**/.git": true,
+			"**/.venv": true,
+			"**/.devbox": true,
+			"**/odoo-data": true,
+			"**/*.egg-info": true,
+			"**/.mypy_cache": true,
+			"**/.pytest_cache": true,
+			"**/.ruff_cache": true
+		},
+		"files.exclude": {
+			"addons": true
+		}
+	}
 }
