@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+        "name": "Odoo: Start (debugpy)",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/odoo/odoo-bin",
+        "args": [
+            "-c", "${workspaceFolder}/odoo.conf",
+            "--dev", "xml,qweb,werkzeug"
+        ],
+        "console": "internalConsole",
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PYTHONPATH": "${workspaceFolder}/odoo",
+          "ODOO_PY_COLORS": "1"
+        },
+        "python": "${workspaceFolder}/.venv/bin/python",
+        "justMyCode": false,
+    }
+]
+}

@@ -1,5 +1,6 @@
 # Odoo specific
-addons
+addons/*
+!addons/.gitkeep
 enterprise
 odoo
 odoo-data
@@ -73,7 +74,9 @@ coverage.xml
 
 # Visual Studio cache/options directory
 .vs/
-.vscode
+/.vscode/*
+!/.vscode/launch.json
+!/.vscode/tasks.json
 
 # OSX Files
 .DS_Store

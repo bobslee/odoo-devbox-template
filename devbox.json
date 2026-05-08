@@ -26,7 +26,8 @@
       "if [ ! -d .venv ]; then python3 -m venv .venv; fi",
       ". .venv/bin/activate",
       "export PYTHONPATH=$PWD/odoo:$PYTHONPATH",
-      "bash scripts/welcome.sh"
+        "bash scripts/welcome.sh",
+        "alias ls='ls --color=auto'"
     ],
     "scripts": {
       "setup": "bash devbox-setup.sh",
