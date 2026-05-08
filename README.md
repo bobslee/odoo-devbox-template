@@ -1,6 +1,46 @@
 # Odoo 19 Devbox
 
-## Usage
+## Quick start (VS Code)
+
+Recommended workflow when developing from VS Code with the [Jetify Devbox](https://marketplace.visualstudio.com/items?itemName=jetpack-io.devbox) extension.
+
+1. **Copy the Odoo config** (first time only):
+    ```bash
+    cp odoo.conf.example odoo.conf
+    ```
+    Edit `addons_path`, `http_port`, etc. as needed (see [odoo.conf](#odooconf) below).
+
+2. **Open the workspace in VS Code**:
+    ```bash
+    code .
+    ```
+	 Or directly open the workspace file for automatic extension recommendations and settings:
+    ```bash
+    code main.code-workspace
+    ```
+    Make sure the Jetify Devbox extension is installed so the integrated terminal activates the devbox shell automatically.
+
+3. **Automatic tasks run in sequence on folder open** (defined in [.vscode/tasks.json](.vscode/tasks.json)):
+    - `Devbox Setup (once)` — runs `devbox run setup` if `.devbox/.setup-done` is missing (creates the venv, installs Odoo + pip deps, initializes PostgreSQL), then writes the marker so it doesn't re-run on subsequent opens.
+    - `Start All Services` — runs `devbox services up` (PostgreSQL and any other services via process-compose). Depends on the setup task above.
+
+4. **Start Odoo via Run and Debug** (`F5`):
+    Use the `Odoo: Start (debugpy)` launch config in [.vscode/launch.json](.vscode/launch.json) — it runs `odoo-bin` with `odoo.conf` against `.venv/bin/python` and supports breakpoints.
+
+### VS Code tasks reference
+
+Available via **Terminal → Run Task…** ([.vscode/tasks.json](.vscode/tasks.json)):
+
+| Task | What it does |
+| --- | --- |
+| `Devbox Setup (once)` | Runs `devbox run setup` only if `.devbox/.setup-done` is absent. Auto-runs on folder open. |
+| `Devbox Setup (force re-run)` | Removes the marker and re-runs setup. Use after pulling Odoo changes or editing `devbox.json` / `devbox-setup.sh`. |
+| `Start All Services` | `devbox services up` (process-compose). Auto-runs on folder open after setup. |
+| `Stop All Services` | `devbox services stop`. |
+
+## CLI usage (devbox shell)
+
+Use this path when you prefer the terminal over VS Code, or for CI / remote sessions.
 
 ### 1. Start the shell (from the project root):
 

@@ -1,0 +1,53 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Devbox Setup (once)",
+      "type": "shell",
+      "command": "if [ ! -f .devbox/.setup-done ]; then devbox run setup && mkdir -p .devbox && touch .devbox/.setup-done; else echo 'devbox setup already completed (.devbox/.setup-done exists) — skipping.'; fi",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "Devbox Setup (force re-run)",
+      "type": "shell",
+      "command": "rm -f .devbox/.setup-done && devbox run setup && mkdir -p .devbox && touch .devbox/.setup-done",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start All Services",
+      "type": "shell",
+      "command": "devbox services up",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": [],
+      "dependsOn": ["Devbox Setup (once)"],
+      "dependsOrder": "sequence",
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "Stop All Services",
+      "type": "shell",
+      "command": "devbox services stop",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
