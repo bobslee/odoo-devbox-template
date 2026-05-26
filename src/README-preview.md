@@ -104,7 +104,7 @@ devbox run update-subtrees
 - Run [scripts/update-subtrees.sh](scripts/update-subtrees.sh) directly
 - Use the **Update Subtrees - VS Code task**.
 
-For each `addons.json` entry the script `git subtree add`s the repo if its `prefix` doesn't exist yet, and `git subtree pull`s it (squashed) otherwise.
+For each `addons.json` entry the script `git subtree add` (adds) the repo if its `prefix` doesn't exist yet, and `git subtree pull` (pulls) it otherwise.
 
 So the same command both onboards a newly registered repo and updates existing ones. **To add an addon repo, just add an entry to `addons.json`** and re-run; no script edits needed.
 

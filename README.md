@@ -5,7 +5,7 @@
 
 A [Copier](https://copier.readthedocs.io/) template that scaffolds a reproducible
 [Devbox](https://www.jetify.com/devbox) development environment for
-[Odoo](https://www.odoo.com), with Jinja-templated support for **Odoo 17.0,
+[Odoo](https://www.odoo.com), with Jinja-templating support for **Odoo 17.0,
 18.0 and 19.0**.
 
 ## What you'll actually get
