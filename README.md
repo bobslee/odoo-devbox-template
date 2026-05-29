@@ -106,13 +106,16 @@ The `README preview in sync` CI job ([.github/workflows/render.yml](.github/work
 runs `--check` on every push/PR, so a forgotten regeneration fails the build.
 
 `devbox.lock` is shipped **version-specific** so the first `direnv`/devbox entry
-is fast for every Odoo version. There is one real, self-contained lock per
-version (`devbox.lock.<ver>.jinja`); a tiny dispatcher
+is fast for every Odoo version.
+
+There is one real, self-contained lock per version (`devbox.lock.<ver>.jinja`); a tiny dispatcher
 ([src/devbox.lock.jinja](src/devbox.lock.jinja)) `{% include %}`s the one
 matching `odoo_version`, falling back to the 19.0 lock for any unknown version.
+
 The per-version files are excluded from being copied on their own (`_exclude` in
-`copier.yml`) — only the dispatcher renders, to a single `devbox.lock`. Across
-versions only the `python`/`postgresql` entries differ; the heavier `@latest`
+`copier.yml`) — only the dispatcher renders, to a single `devbox.lock`.
+
+Across versions only the `python`/`postgresql` entries differ; the heavier `@latest`
 packages (e.g. `gcc`) are identical and stay pinned.
 
 ## License
