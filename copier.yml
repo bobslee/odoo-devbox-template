@@ -69,6 +69,7 @@ odoo_version:
     "17.0": "17.0"
     "18.0": "18.0"
     "19.0": "19.0"
+    "20.0": "20.0"
   default: "19.0"
 
 python_version:
@@ -78,8 +79,15 @@ python_version:
     - "3.10"
     - "3.11"
     - "3.12"
-  # Odoo 17 ships with/recommends 3.11; 18 and 19 run on 3.12.
+    - "3.13"
+  # Odoo 17 ships with/recommends 3.11; 18, 19 and 20 run on 3.12. All four
+  # support 3.13 (opt-in; a few pins have no 3.13 wheel and build from source).
+  # 3.14 is left out: Odoo 20's gevent/psycopg2 pins have no 3.14 wheels.
   default: "{% if odoo_version == '17.0' %}3.11{% else %}3.12{% endif %}"
+  # Odoo 20 raised MIN_PY_VERSION to 3.12 (odoo/release.py): older interpreters
+  # fail at import and its requirements.txt has no pins below 3.12.
+  validator: >-
+    {% if odoo_version == '20.0' and python_version in ['3.10', '3.11'] %}Odoo 20.0 requires Python 3.12 or newer.{% endif %}
 
 postgresql_version:
   type: str
@@ -89,8 +97,12 @@ postgresql_version:
     - "15"
     - "16"
     - "17"
-  # Odoo 19 targets PostgreSQL 17; 16 is a safe default for 17/18.
-  default: "{% if odoo_version == '19.0' %}17{% else %}16{% endif %}"
+    - "18"
+  # Odoo 20 defaults to PostgreSQL 18, 19 to 17; 16 is a safe default for 17/18.
+  default: "{% if odoo_version == '20.0' %}18{% elif odoo_version == '19.0' %}17{% else %}16{% endif %}"
+  # Odoo 20 raised MIN_PG_VERSION to 16 (odoo/release.py).
+  validator: >-
+    {% if odoo_version == '20.0' and postgresql_version in ['14', '15'] %}Odoo 20.0 requires PostgreSQL 16 or newer.{% endif %}
 
 use_enterprise:
   type: bool

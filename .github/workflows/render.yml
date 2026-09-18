@@ -29,6 +29,9 @@ jobs:
           - odoo: "19.0"
             python: "3.12"
             pg: "17"
+          - odoo: "20.0"
+            python: "3.12"
+            pg: "18"
     steps:
       - uses: actions/checkout@v4
         with:

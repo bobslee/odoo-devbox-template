@@ -6,8 +6,8 @@ improvements, and code.
 
 This project is a [Copier](https://copier.readthedocs.io/) template that
 scaffolds a reproducible [Devbox](https://www.jetify.com/devbox) development
-environment for [Odoo](https://www.odoo.com) (17.0, 18.0 and 19.0). It is open
-source and released under the [AGPL-3.0 License](LICENSE).
+environment for [Odoo](https://www.odoo.com) (17.0, 18.0, 19.0 and 20.0). It is
+open source and released under the [AGPL-3.0 License](LICENSE).
 
 ## Code of Conduct
 
@@ -28,7 +28,7 @@ When filing a bug report, include:
 - Steps to reproduce the problem — ideally the exact `copier copy` / `copier
   update` command and the answers you gave.
 - What you expected to happen and what actually happened.
-- The `odoo_version` you targeted (`17.0`, `18.0` or `19.0`) and whether
+- The `odoo_version` you targeted (`17.0`, `18.0`, `19.0` or `20.0`) and whether
   `use_enterprise` was on or off.
 - Your [Copier](https://copier.readthedocs.io/) version (`copier --version`) and
   host OS.
@@ -81,7 +81,7 @@ How the template is laid out:
 
 There is no unit-test suite; the template is validated by rendering it and
 checking the output. CI ([.github/workflows/render.yml](.github/workflows/render.yml))
-runs the following for Odoo `17.0`, `18.0` and `19.0` on every push and PR —
+runs the following for Odoo `17.0`, `18.0`, `19.0` and `20.0` on every push and PR —
 please run the equivalent locally before opening a PR.
 
 Render the template for a given version:
@@ -96,7 +96,8 @@ copier copy --defaults --vcs-ref=HEAD --data odoo_version=18.0 . /tmp/out
 Validate the rendered project (per-version Python/PostgreSQL, lock file, etc.):
 
 ```sh
-# matrix: 17.0 → py 3.11 / pg 16   |   18.0 → py 3.12 / pg 16   |   19.0 → py 3.12 / pg 17
+# matrix: 17.0 → py 3.11 / pg 16   |   18.0 → py 3.12 / pg 16
+#         19.0 → py 3.12 / pg 17   |   20.0 → py 3.12 / pg 18
 python .github/scripts/check_render.py /tmp/out 18.0 3.12 16
 ```
 
@@ -125,7 +126,7 @@ generated `devbox-setup.sh` or `README.md`.
   codebase).
 - Remember the template is rendered with Jinja: changes to `.jinja` files must
   keep the **rendered** output valid for all supported Odoo versions
-  (`17.0`/`18.0`/`19.0`) and for both `use_enterprise` settings.
+  (`17.0`/`18.0`/`19.0`/`20.0`) and for both `use_enterprise` settings.
 - When you change `src/README.md.jinja`, regenerate `src/README-preview.md` with
   `scripts/render-readme.sh` and commit the result (CI fails on a stale preview).
 - Include the project copyright header on new source files (keep the original
