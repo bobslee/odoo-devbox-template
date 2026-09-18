@@ -6,7 +6,7 @@
 A [Copier](https://copier.readthedocs.io/) template that scaffolds a reproducible
 [Devbox](https://www.jetify.com/devbox) development environment for
 [Odoo](https://www.odoo.com), with Jinja-templating support for **Odoo 17.0,
-18.0 and 19.0**.
+18.0, 19.0 and 20.0**.
 
 ## What you'll actually get
 
@@ -57,9 +57,9 @@ merges template changes, prompting only on conflicts.
 | Question | Default | Notes |
 | --- | --- | --- |
 | `project_name` | target directory name | README title and shell welcome banner. Defaults to the name of the directory you generate into. |
-| `odoo_version` | `19.0` | One of `17.0`, `18.0`, `19.0`. Drives clone branches, symlink targets and the version-derived defaults below. |
-| `python_version` | `3.11` (17.0) / `3.12` (18.0, 19.0) | Pinned in `devbox.json`. |
-| `postgresql_version` | `16` (17.0, 18.0) / `17` (19.0) | Pinned in `devbox.json`. |
+| `odoo_version` | `19.0` | One of `17.0`, `18.0`, `19.0`, `20.0`. Drives clone branches, symlink targets and the version-derived defaults below. |
+| `python_version` | `3.11` (17.0) / `3.12` (18.0, 19.0, 20.0) | Pinned in `devbox.json`. One of `3.10`–`3.13`; Odoo 20.0 requires 3.12 or newer. |
+| `postgresql_version` | `16` (17.0, 18.0) / `17` (19.0) / `18` (20.0) | Pinned in `devbox.json`. One of `14`–`18`; Odoo 20.0 requires 16 or newer. Devbox has no Intel Mac (`x86_64-darwin`) build of PostgreSQL 18; pick `17` there. |
 | `use_enterprise` | `true` | When false, drops the Enterprise symlink wiring (setup script, README, `addons_path` example). |
 
 The Python/PostgreSQL defaults are computed from `odoo_version` but can be
@@ -83,6 +83,7 @@ overridden at the prompt.
     ├── devbox.lock.17.0.jinja   # real, full lock for Odoo 17.0  (not copied as-is)
     ├── devbox.lock.18.0.jinja   # real, full lock for Odoo 18.0  (not copied as-is)
     ├── devbox.lock.19.0.jinja   # real, full lock for Odoo 19.0  (not copied as-is)
+    ├── devbox.lock.20.0.jinja   # real, full lock for Odoo 20.0  (not copied as-is)
     ├── scripts/
     └── …
 ```
